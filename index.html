@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        :root {
+            --primary-color: #0d6efd;
+            --bg-color: #ffffff;
+            --text-color: #333;
+            --dark-bg: #1a1a1a;
+            --dark-text: #f5f5f5;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            position: relative;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: inherit;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            font-size: 24px;
+            cursor: pointer;
+            display: none;
+            background: none;
+            border: none;
+        }
+
+        
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 50px 0;
+            flex-wrap: wrap;
+            margin-top: -70px;
+        }
+
+        .hero-text {
+            max-width: 52%;
+        }
+
+        .hero-text h2 {
+            font-size: 36px;
+        }
+
+        .name {
+            color: var(--primary-color);
+        }
+
+        .hero-text .cta-btn {
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 15px;
+            transition: background 0.3s;
+        }
+
+        .hero-text .cta-btn:hover {
+            background: #0056b3;
+        }
+
+
+        .hero-image {
+            max-width: 45%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-image img {
+            width: 90%;
+            max-width: 900px;
+            border-radius: 10px;
+        }
+
+        .hero-image img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Dark Mode */
+        .dark-mode {
+            background: var(--dark-bg);
+            color: var(--dark-text);
+        }
+
+    
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--bg-color);
+                flex-direction: column;
+                text-align: center;
+                padding: 15px 0;
+                display: none;
+                box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+                z-index: 10;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-text {
+                max-width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .hero-image {
+                max-width: 100%;
+            }
+        }
+        
+     
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Navbar -->
+        <nav class="navbar">
+            <h1 class="logo">Portfolio</h1>
+            <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Work</a></li>
+                <li><a href="#">Contact</a></li>
+                <li>
+                    <button class="theme-toggle"><i class="fas fa-moon"> mode</i></button>
+                </li>
+            </ul>
+        </nav>
+
+  
+        <section class="hero">
+            <div class="hero-text">
+                <h2>Hi, I'm <span class="name">Rezwan Rizvi</span></h2>
+                <h3>MERN Stack Developer & penetration tester</h3>
+                <p>Passionate about frontend technologies, security testing, and AI-driven applications.</p>
+                <a href="#" class="cta-btn">View My Work</a>
+            </div>
+            <div class="hero-image">
+                <img src="https://i.postimg.cc/Qtjy8NL7/man-face-emotive-icon-smiling-male-character-in-blue-shirt-flat-illustration-isolated-on-white-happy.jpg" alt="Profile Image">
+
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Animations
+        gsap.from(".hero-text h2", { opacity: 0, y: -50, duration: 1 });
+        gsap.from(".hero-text p", { opacity: 0, y: 50, duration: 1, delay: 0.3 });
+        gsap.from(".hero-image img", { opacity: 0, scale: 0.8, duration: 1, delay: 0.6 });
+
+        // Dark Mode Toggle
+        const toggleButton = document.querySelector(".theme-toggle");
+        toggleButton.addEventListener("click", () => {
+            document.body.classList.toggle("dark-mode");
+        });
+
+      
+        const menuToggle = document.querySelector(".menu-toggle");
+        const navLinks = document.querySelector(".nav-links");
+
+        menuToggle.addEventListener("click", () => {
+            navLinks.classList.toggle("active");
+        });
+    </script>
+
+</body>
+</html>
